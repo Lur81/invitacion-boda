@@ -1,0 +1,79 @@
+.gift {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.gift__intro {
+  max-width: 48rem;
+  margin: 0 auto;
+
+  font-size: var(--fs-base);
+  line-height: 1.7;
+
+  color: var(--color-text-muted);
+}
+
+.gift__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: var(--space-md);
+}
+
+.gift__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: var(--space-sm);
+
+  padding: var(--space-lg);
+
+  text-align: center;
+
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
+
+  background-color: var(--bg-card);
+}
+
+.gift__label {
+  font-size: var(--fs-xs);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: var(--color-primary);
+}
+
+.gift__value {
+  font-family: var(--font-title);
+  font-size: var(--fs-lg);
+
+  word-break: break-all;
+
+  color: var(--color-text);
+}
+
+.gift__copy {
+  padding: var(--space-xs) var(--space-md);
+
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: var(--color-primary);
+  background-color: transparent;
+
+  border: 1px solid var(--color-primary);
+
+  cursor: pointer;
+
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.gift__copy:hover,
+.gift__copy:focus-visible {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}

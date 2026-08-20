@@ -1,0 +1,61 @@
+.footer {
+  padding: var(--space-xl) var(--space-md);
+
+  text-align: center;
+
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+}
+
+.footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer__monogram {
+  margin-bottom: var(--space-md);
+
+  font-family: var(--font-title);
+  font-size: var(--fs-xl);
+  letter-spacing: 6px;
+
+  color: var(--color-accent);
+}
+
+.footer__names {
+  margin-bottom: var(--space-sm);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.6rem, 1.2rem + 1.5vw, var(--fs-2xl));
+  font-weight: 400;
+
+  color: var(--color-white);
+}
+
+.footer__date {
+  margin-bottom: var(--space-lg);
+
+  font-size: var(--fs-sm);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  color: var(--color-accent);
+}
+
+.footer__thanks {
+  max-width: 40rem;
+  margin: 0 auto var(--space-lg);
+
+  font-size: var(--fs-base);
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer__credit {
+  font-size: var(--fs-xs);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.5);
+}

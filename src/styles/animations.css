@@ -1,0 +1,26 @@
+.hero,
+.section,
+.footer {
+  opacity: 0;
+  transform: translateY(18px);
+
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero.is-visible,
+.section.is-visible,
+.footer.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .section,
+  .footer {
+    opacity: 1;
+    transform: none;
+
+    transition: none;
+  }
+}
