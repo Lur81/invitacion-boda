@@ -162,6 +162,62 @@ export const wedding = {
     ],
   },
 
+  album: {
+    eyebrow: "Vuestros recuerdos",
+    title: "Nuestro álbum",
+    intro:
+      "Queremos recordar este día también a través de vuestros ojos. ¡Sube las fotos y vídeos que hagas durante la boda y ayúdanos a crear nuestro álbum!",
+    button: "Subir foto",
+    cameraButton: "Hacer una foto",
+    hint: "Podéis subir varias fotos a la vez. También se admiten vídeos cortos.",
+    uploadingLabel: "Subiendo",
+    loadingLabel: "Cargando el álbum...",
+    successLabel: "¡Gracias! Tu foto ya está en el álbum.",
+    emptyMessage: "Todavía no hay fotos. ¡Sé el primero en subir la tuya!",
+    unconfiguredMessage: "El álbum de fotos está en preparación. Vuelve en unos días.",
+    loadError: "No se ha podido cargar el álbum. Inténtalo de nuevo.",
+    bucket: "wedding-gallery",
+    table: "wedding_gallery",
+    folder: "uploads",
+    maxItems: 120,
+    maxImageMb: 20,
+    maxVideoMb: 50,
+    maxVideoSeconds: 60,
+    qr: {
+      elegantColor: "#5f443c",
+      funColor: "#7d5a50",
+      elegantCaption: "📸 Comparte tus fotos",
+      funCaption: "📷 ¡Haz fotos y súbelas aquí!",
+    },
+    labels: {
+      expand: "Ampliar foto",
+      close: "Cerrar",
+      previous: "Anterior",
+      next: "Siguiente",
+      counter: "Foto",
+    },
+    errors: {
+      generic: "No se ha podido subir algún archivo. Comprueba el formato y el tamaño.",
+      fileType: "Formato no permitido: solo imágenes o vídeos.",
+      imageTooBig: "La imagen supera el tamaño máximo permitido.",
+      videoTooBig: "El vídeo supera el tamaño máximo permitido.",
+      videoTooLong: "El vídeo supera la duración máxima permitida.",
+    },
+    cta: {
+      eyebrow: "Participa",
+      title: "Comparte tus fotos",
+      text: "Guarda tus recuerdos y descubre los momentos que hayan capturado los demás.",
+      button: "Ver y subir fotos",
+    },
+    fotos: {
+      kicker: "Boda de la familia",
+      title: "¡Queremos ver la boda desde vuestros ojos!",
+      intro:
+        "¿Has hecho una foto bonita, divertida, emocionante o ligeramente comprometida? ¡Súbela aquí para que podamos recordar este día para siempre!",
+      backLabel: "Volver a la invitación",
+    },
+  },
+
   gift: {
     eyebrow: "Detalle",
     title: "Regalo",
@@ -191,5 +247,6 @@ export const wedding = {
     rsvp: true,
     playlist: true,
     gift: true,
+    album: true,
   },
 };

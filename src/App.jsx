@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { wedding } from "./data/wedding";
 
@@ -9,19 +9,38 @@ import Event from "./sections/Event";
 import RSVP from "./sections/RSVP";
 import Gallery from "./sections/Gallery";
 import Music from "./sections/Music";
+import Album from "./sections/Album";
 import Gift from "./sections/Gift";
 import Footer from "./sections/Footer";
 import MusicPlayer from "./components/MusicPlayer";
+import Fotos from "./pages/Fotos";
 
 function App() {
   const { modules } = wedding;
 
-  useEffect(() => {
-    document.title = `${wedding.couple.bride} & ${wedding.couple.groom} — ${wedding.meta.title}`;
-    document.documentElement.lang = wedding.languages[0];
-  }, []);
+  const [pathname, setPathname] = useState(window.location.pathname);
 
   useEffect(() => {
+    function onLocationChange() {
+      setPathname(window.location.pathname);
+    }
+
+    window.addEventListener("popstate", onLocationChange);
+
+    return () => window.removeEventListener("popstate", onLocationChange);
+  }, []);
+
+  const isFotos = pathname.replace(/\/+$/, "") === "/fotos";
+
+  useEffect(() => {
+    if (isFotos) return;
+    document.title = `${wedding.couple.bride} & ${wedding.couple.groom} — ${wedding.meta.title}`;
+    document.documentElement.lang = wedding.languages[0];
+  }, [isFotos]);
+
+  useEffect(() => {
+    if (isFotos) return;
+
     const targets = document.querySelectorAll(".hero, .section, .footer");
 
     const observer = new IntersectionObserver(
@@ -39,7 +58,11 @@ function App() {
     targets.forEach((target) => observer.observe(target));
 
     return () => observer.disconnect();
-  }, []);
+  }, [isFotos]);
+
+  if (isFotos) {
+    return <Fotos />;
+  }
 
   return (
     <>
@@ -50,6 +73,7 @@ function App() {
       {modules.event && <Event />}
       {modules.rsvp && <RSVP />}
       {modules.gallery && <Gallery />}
+      {modules.album && <Album />}
       {modules.playlist && <Music />}
       {modules.gift && <Gift />}
 

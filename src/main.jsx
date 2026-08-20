@@ -9,6 +9,7 @@ import "./styles/countdown.css";
 import "./styles/event.css";
 import "./styles/rsvp.css";
 import "./styles/gallery.css";
+import "./styles/album.css";
 import "./styles/music.css";
 import "./styles/gift.css";
 import "./styles/footer.css";

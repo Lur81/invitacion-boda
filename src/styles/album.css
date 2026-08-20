@@ -1,0 +1,486 @@
+.album {
+  background-color: var(--bg-card);
+}
+
+.album__intro {
+  max-width: 560px;
+
+  margin: 0 auto var(--space-lg);
+
+  text-align: center;
+
+  color: var(--color-text-muted);
+}
+
+/* ---------- Subida ---------- */
+
+.album__uploader {
+  max-width: 520px;
+
+  margin: 0 auto var(--space-lg);
+}
+
+.album__upload-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: var(--space-sm);
+}
+
+.album__upload-button {
+  padding: var(--space-sm) var(--space-lg);
+
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  color: var(--color-white);
+  background-color: var(--color-primary);
+
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.album__upload-button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.album__upload-button:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+}
+
+.album__camera-button {
+  color: var(--color-primary);
+  background-color: var(--color-white);
+
+  border: 1px solid var(--color-primary);
+}
+
+.album__camera-button:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+@media (min-width: 721px) {
+  .album__camera-button {
+    display: none;
+  }
+}
+
+.album__input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.album__hint {
+  margin: var(--space-sm) 0 0;
+
+  font-size: var(--fs-sm);
+
+  text-align: center;
+
+  color: var(--color-text-muted);
+}
+
+.album__progress-wrap {
+  margin-top: var(--space-md);
+}
+
+.album__progress-name {
+  margin-bottom: var(--space-xs);
+
+  font-size: var(--fs-sm);
+
+  text-align: center;
+
+  color: var(--color-text-muted);
+}
+
+.album__progress {
+  overflow: hidden;
+
+  height: 6px;
+
+  background-color: var(--color-border);
+
+  border-radius: 999px;
+}
+
+.album__progress span {
+  display: block;
+
+  height: 100%;
+
+  background-color: var(--color-accent);
+
+  border-radius: 999px;
+
+  transition: width 0.2s ease;
+}
+
+.album__status {
+  margin: var(--space-md) 0 0;
+
+  font-size: var(--fs-sm);
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.album__status--ok {
+  color: var(--color-primary);
+}
+
+.album__status--error {
+  color: var(--color-danger);
+}
+
+/* ---------- Estado del álbum ---------- */
+
+.album__load-status,
+.album__empty,
+.album__unconfigured {
+  max-width: 520px;
+
+  margin: 0 auto var(--space-lg);
+
+  text-align: center;
+
+  color: var(--color-text-muted);
+}
+
+.album__load-status--error {
+  color: var(--color-danger);
+}
+
+/* ---------- Galería (masonry) ---------- */
+
+.album__gallery {
+  column-count: 3;
+  column-gap: var(--space-sm);
+
+  margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 720px) {
+  .album__gallery {
+    column-count: 2;
+  }
+}
+
+.album__tile {
+  margin-bottom: var(--space-sm);
+
+  overflow: hidden;
+
+  border-radius: var(--radius-sm);
+
+  background-color: var(--color-border);
+
+  break-inside: avoid;
+}
+
+.album__tile-button {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  padding: 0;
+
+  border: 0;
+
+  cursor: zoom-in;
+
+  background-color: transparent;
+}
+
+.album__tile-media {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.album__tile-button:hover .album__tile-media,
+.album__tile-button:focus-visible .album__tile-media {
+  transform: scale(1.03);
+}
+
+.album__tile-badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+
+  display: grid;
+  place-items: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  font-size: var(--fs-sm);
+
+  color: var(--color-white);
+  background-color: rgba(20, 15, 10, 0.55);
+
+  border-radius: 50%;
+}
+
+/* ---------- Lightbox ---------- */
+
+.album__lightbox {
+  position: fixed;
+  inset: 0;
+
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(20, 15, 10, 0.88);
+}
+
+.album__lightbox-frame {
+  margin: 0;
+}
+
+.album__lightbox-media {
+  display: block;
+
+  max-width: 90vw;
+  max-height: 85vh;
+
+  object-fit: contain;
+
+  animation: album-fade 0.3s ease;
+}
+
+.album__lightbox-frame figcaption {
+  margin-top: var(--space-sm);
+
+  font-size: var(--fs-sm);
+
+  text-align: center;
+
+  color: var(--color-white);
+}
+
+.album__lightbox-close,
+.album__lightbox-nav {
+  position: absolute;
+
+  z-index: 1;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  font-size: var(--fs-lg);
+  line-height: 1;
+
+  color: var(--color-white);
+  background-color: transparent;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.album__lightbox-close {
+  top: var(--space-md);
+  right: var(--space-md);
+}
+
+.album__lightbox-nav {
+  top: 50%;
+
+  font-size: var(--fs-xl);
+
+  transform: translateY(-50%);
+}
+
+.album__lightbox-nav--prev {
+  left: var(--space-md);
+}
+
+.album__lightbox-nav--next {
+  right: var(--space-md);
+}
+
+.album__lightbox-close:hover,
+.album__lightbox-nav:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes album-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------- Tarjeta CTA ---------- */
+
+.album__cta {
+  max-width: 720px;
+
+  margin: 0 auto;
+
+  padding: var(--space-lg);
+
+  text-align: center;
+
+  background-color: var(--color-secondary);
+
+  border: 1px solid var(--color-border);
+  border-top: 2px solid var(--color-accent);
+  border-radius: var(--radius-md);
+}
+
+.album__cta-eyebrow {
+  margin-bottom: var(--space-sm);
+
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  color: var(--color-accent);
+}
+
+.album__cta-title {
+  margin-bottom: var(--space-sm);
+
+  font-family: var(--font-title);
+  font-size: var(--fs-xl);
+  font-weight: 400;
+
+  color: var(--color-text);
+}
+
+.album__cta-text {
+  margin-bottom: var(--space-md);
+
+  color: var(--color-text-muted);
+}
+
+.album__cta-button {
+  display: inline-block;
+
+  padding: var(--space-sm) var(--space-lg);
+
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  color: var(--color-primary);
+  background-color: var(--color-white);
+
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  cursor: pointer;
+}
+
+.album__cta-button:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+/* ---------- Página /fotos ---------- */
+
+.fotos {
+  min-height: 100svh;
+
+  padding: 0 var(--space-md) var(--space-lg);
+
+  background-color: var(--bg-card);
+}
+
+.fotos__hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+
+  text-align: center;
+}
+
+.fotos__kicker {
+  margin-bottom: var(--space-sm);
+
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  color: var(--color-accent);
+}
+
+.fotos__title {
+  margin-bottom: var(--space-md);
+
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 4.5vw, var(--fs-3xl));
+  font-weight: 400;
+
+  color: var(--color-text);
+}
+
+.fotos__intro {
+  max-width: 560px;
+
+  margin: var(--space-md) auto var(--space-lg);
+
+  color: var(--color-text-muted);
+}
+
+.fotos__gallery {
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+}
+
+.fotos__back {
+  display: inline-block;
+
+  margin-top: var(--space-lg);
+
+  text-decoration: none;
+
+  color: var(--color-text-muted);
+}
+
+.fotos__back:hover {
+  color: var(--color-primary);
+}
