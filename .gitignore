@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Imágenes personales
-public/image/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
