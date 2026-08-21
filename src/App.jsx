@@ -13,12 +13,15 @@ import Album from "./sections/Album";
 import Gift from "./sections/Gift";
 import Footer from "./sections/Footer";
 import MusicPlayer from "./components/MusicPlayer";
+import IntroEnvelope from "./components/IntroEnvelope";
 import Fotos from "./pages/Fotos";
 
 function App() {
   const { modules } = wedding;
 
   const [pathname, setPathname] = useState(window.location.pathname);
+  const [showIntro, setShowIntro] = useState(true);
+  const [revealContent, setRevealContent] = useState(false);
 
   useEffect(() => {
     function onLocationChange() {
@@ -31,6 +34,27 @@ function App() {
   }, []);
 
   const isFotos = pathname.replace(/\/+$/, "") === "/fotos";
+  const shouldShowIntro = showIntro && !isFotos;
+
+  useEffect(() => {
+    if (isFotos && showIntro) {
+      setShowIntro(false);
+    }
+  }, [isFotos, showIntro]);
+
+  useEffect(() => {
+    if (isFotos) {
+      setRevealContent(true);
+    }
+  }, [isFotos]);
+
+  useEffect(() => {
+    document.body.classList.toggle("has-intro", shouldShowIntro);
+
+    return () => {
+      document.body.classList.remove("has-intro");
+    };
+  }, [shouldShowIntro]);
 
   useEffect(() => {
     if (isFotos) return;
@@ -66,20 +90,31 @@ function App() {
 
   return (
     <>
-      <Hero />
+      {shouldShowIntro && (
+        <IntroEnvelope
+          onReveal={() => setRevealContent(true)}
+          onComplete={() => setShowIntro(false)}
+        />
+      )}
 
-      {modules.story && <Story />}
-      {modules.countdown && <Countdown />}
-      {modules.event && <Event />}
-      {modules.rsvp && <RSVP />}
-      {modules.gallery && <Gallery />}
-      {modules.album && <Album />}
-      {modules.playlist && <Music />}
-      {modules.gift && <Gift />}
+      <div
+        className={`page-content${shouldShowIntro ? (revealContent ? " page-content--revealing" : " page-content--intro") : " page-content--shown"}`}
+      >
+        <Hero />
 
-      <Footer />
+        {modules.story && <Story />}
+        {modules.countdown && <Countdown />}
+        {modules.event && <Event />}
+        {modules.rsvp && <RSVP />}
+        {modules.gallery && <Gallery />}
+        {modules.album && <Album />}
+        {modules.playlist && <Music />}
+        {modules.gift && <Gift />}
 
-      <MusicPlayer />
+        <Footer />
+
+        <MusicPlayer />
+      </div>
     </>
   );
 }

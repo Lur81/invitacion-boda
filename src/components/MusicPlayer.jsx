@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { wedding } from "../data/wedding";
 
@@ -6,10 +6,6 @@ function MusicPlayer() {
   const { audio } = wedding;
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
-
-  if (!audio.src) {
-    return null;
-  }
 
   async function toggle() {
     const audioElement = audioRef.current;
@@ -26,6 +22,34 @@ function MusicPlayer() {
     } catch {
       setPlaying(false);
     }
+  }
+
+  useEffect(() => {
+    async function handlePlayMusic() {
+      const audioElement = audioRef.current;
+
+      if (!audioElement) return;
+
+      try {
+        // La intro solo dispara el evento; el audio real vive aquí para que no se corte
+        // al desmontarse el sobre o al cambiar el estado de la pantalla inicial.
+        audioElement.currentTime = 0;
+        await audioElement.play();
+        setPlaying(true);
+      } catch {
+        setPlaying(false);
+      }
+    }
+
+    window.addEventListener("wedding:play-music", handlePlayMusic);
+
+    return () => {
+      window.removeEventListener("wedding:play-music", handlePlayMusic);
+    };
+  }, []);
+
+  if (!audio.src) {
+    return null;
   }
 
   return (

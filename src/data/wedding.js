@@ -141,7 +141,7 @@ export const wedding = {
   },
 
   audio: {
-    src: "",
+    src: "/music/marta-y-jorge-se-casan.mp3",
     title: "Nuestra canción",
     playLabel: "Reproducir",
     pauseLabel: "Pausar música",
